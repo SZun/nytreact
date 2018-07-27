@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import BHeader from '../../components/Header/Header';
+import Home from '../Home/Home';
 
 class Layout extends Component {
   state = {};
@@ -7,6 +9,7 @@ class Layout extends Component {
     return (
       <div>
         <BHeader />
+        <Home />
       </div>
     );
   }

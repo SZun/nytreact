@@ -15,7 +15,7 @@ const BHeader = () => {
             <strong>NYT + React</strong>
           </h1>
           <p className="text-center">
-            Search for add add notes to NYT articles that inspire you!
+            Search for and add notes to NYT articles that inspire you!
           </p>
         </Jumbotron>
       </div>
