@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import axios from '../../axios/axios-nyt-api';
+import axiosAPI from '../../axios/axios-nyt-api';
 
 import BCard from '../../components/Card/Card';
 import BLabel from '../../components/Label/Label';
@@ -42,8 +42,18 @@ class Home extends Component {
         endYear: this.state.endYear
       };
 
-      const articles = await axios(data).get('/');
-      console.log(articles);
+      // const articles = await axiosAPI(data).get('/');
+      // const allArticles = [];
+      // for (var i = 0; i < 10; i++) {
+      //   const title = articles.data.response.docs[i].headline.main;
+      //   const date = articles.data.response.docs[i].pub_date;
+      //   const url = articles.data.response.docs[i].web_url;
+      //   const results = {
+      //     title: title,
+      //     data: date,
+      //     url: url
+      //   };
+      // }
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
