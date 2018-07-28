@@ -15,6 +15,11 @@ const articleSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true
+  },
+  comments: {
+    type: [String],
+    required: false,
+    trim: true
   }
 });
 

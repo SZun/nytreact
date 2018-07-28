@@ -28,6 +28,19 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  try {
+    const article = await Article.findByIdAndUpdate(
+      { _id: req.params.id },
+      { $push: { comments: req.body.comment } },
+      { new: true }
+    );
+    res.send(article);
+  } catch (err) {
+    console.log(`Error: ${err.message}`);
+  }
+});
+
 router.delete('/:id', async (req, res) => {
   try {
     const article = await Article.findByIdAndRemove(req.params.id);
