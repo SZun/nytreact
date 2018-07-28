@@ -9,40 +9,19 @@ import axios from '../../axios/axios-nyt-api';
 
 class Home extends Component {
   state = {
-    year: '',
-    month: ''
+    topic: ''
   };
 
-  options = e => {
-    const optionTags = [];
-    for (var i = 1; i < 13; i++) {
-      var option = (
-        <option value={i} key={i} className="month">
-          {i}
-        </option>
-      );
-      optionTags.push(option);
-    }
-    return optionTags;
-  };
-
-  getYear = e => {
+  getTopic = e => {
     this.setState({
-      year: e.target.value
-    });
-  };
-
-  getMonth = e => {
-    this.setState({
-      month: e.target.value
+      topic: e.target.value
     });
   };
 
   onClickHandler = async () => {
     try {
       const data = {
-        year: this.state.year,
-        month: this.state.month
+        topic: this.state.topic
       };
       const articles = await axios(data).get('/');
       console.log(articles);
@@ -55,15 +34,12 @@ class Home extends Component {
     return (
       <div>
         <BCard header="Search">
-          <BLabel>Year</BLabel>
+          <BLabel>Topic</BLabel>
           <BInput
-            type="number"
-            placeholder="1974"
-            change={e => this.getYear(e)}
+            type="text"
+            placeholder="Canada"
+            change={e => this.getTopic(e)}
           />
-          <BLabel>Month</BLabel>
-          <select onChange={e => this.getMonth(e)}>{this.options()}</select>
-          <br />
           <BButton
             color="primary"
             className="text-center"
