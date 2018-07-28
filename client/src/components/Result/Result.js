@@ -7,11 +7,11 @@ const Result = props => {
     <Container>
       <Row>
         <Col sm="6">
-          <h3>{props.children}</h3>
+          <p className="text-left">{props.children}</p>
         </Col>
         <Col sm="3" />
         <Col sm="3">
-          <BButton onClick={props.clicked} color="success">
+          <BButton clicked={props.clicked} color="success">
             Save Article
           </BButton>
         </Col>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import { NavLink } from 'react-router-dom';
 import axios from '../../axios/axios-nyt-api';
 
 import BCard from '../../components/Card/Card';
@@ -36,16 +35,27 @@ class Home extends Component {
 
   onClickHandler = async () => {
     try {
+      localStorage.removeItem('allArticles');
       const data = {
         topic: this.state.topic,
         startYear: this.state.startYear,
         endYear: this.state.endYear
       };
       const articles = await axios(data).get('/');
-
+      const allArticles = [];
       for (var i = 0; i < 10; i++) {
-        console.log(articles.data.response[i]);
+        var title = articles.data.response.docs[i].headline.main;
+        var date = articles.data.response.docs[i].pub_date;
+        var url = articles.data.response.docs[i].web_url;
+        var results = {
+          title: title,
+          date: date,
+          url: url
+        };
+        allArticles.push(results);
       }
+      localStorage.setItem('allArticles', JSON.stringify(allArticles));
+      this.props.history.push('/results');
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -73,15 +83,13 @@ class Home extends Component {
             placeholder="19970505"
             change={e => this.getEnd(e)}
           />
-          <NavLink to="/results">
-            <BButton
-              color="primary"
-              className="text-center"
-              clicked={() => this.onClickHandler()}
-            >
-              Search
-            </BButton>
-          </NavLink>
+          <BButton
+            color="primary"
+            className="text-center"
+            clicked={() => this.onClickHandler()}
+          >
+            Search
+          </BButton>
         </BCard>
       </div>
     );

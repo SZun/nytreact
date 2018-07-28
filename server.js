@@ -6,7 +6,7 @@ import bodyParser from './startup/bodyParser';
 import articleRoutes from './startup/routes';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5050;
 
 connection(mongoose);
 bodyParser(app);
