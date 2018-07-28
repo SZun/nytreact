@@ -41,9 +41,11 @@ class Home extends Component {
         startYear: this.state.startYear,
         endYear: this.state.endYear
       };
-
       const articles = await axios(data).get('/');
-      console.log(articles);
+
+      for (var i = 0; i < 10; i++) {
+        console.log(articles.data.response[i]);
+      }
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
