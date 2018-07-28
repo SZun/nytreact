@@ -12,17 +12,16 @@ const Results = props => {
     banan: allArticles
   };
 
-  const postArticle = (title, date, url) => {
+  const postArticle = async (title, date, url) => {
     try {
       const data = {
         title: title,
         date: date,
         url: url
       };
-      const res = axios.post('/', data);
+      const res = await axios.post('/', data);
       console.log(res);
       props.history.push('/saved');
-      console.log(data);
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }

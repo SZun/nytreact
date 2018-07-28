@@ -10,7 +10,9 @@ const SavedArticle = props => {
         <Col sm="4">{props.title}</Col>
         <Col sm="4">{props.date}</Col>
         <Col sm="4">
-          <BButton color="danger">Remove</BButton>
+          <BButton color="danger" clicked={props.clicked}>
+            Remove
+          </BButton>
         </Col>
       </Row>
     </Container>

@@ -54,7 +54,7 @@
     "test": "node scripts/test.js --env=jsdom"
   },
   "proxy": {
-    "/auth/articles": {
+    "/api/articles": {
       "target": "http://localhost:5050"
     }
   },
