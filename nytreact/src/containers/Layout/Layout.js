@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import BHeader from '../../components/Header/Header';
-import Home from '../Home/Home';
 
-class Layout extends Component {
-  state = {};
-  render() {
-    return (
-      <div>
+const Layout = props => {
+  return (
+    <div>
+      <header>
         <BHeader />
-        <Home />
-      </div>
-    );
-  }
-}
+      </header>
+      <main>{props.children}</main>
+    </div>
+  );
+};
 
 export default Layout;

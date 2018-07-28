@@ -6,9 +6,7 @@ const BCard = props => (
   <div>
     <Card>
       <CardHeader>
-        <h1>
-          <strong>{props.header}</strong>
-        </h1>
+        <h1>{props.header}</h1>
       </CardHeader>
       <CardBody>{props.children}</CardBody>
     </Card>

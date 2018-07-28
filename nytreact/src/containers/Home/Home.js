@@ -39,12 +39,16 @@ class Home extends Component {
   };
 
   onClickHandler = async () => {
-    const data = {
-      year: this.state.year,
-      month: this.state.month
-    };
-    const articles = await axios(data).get('/');
-    console.log(articles);
+    try {
+      const data = {
+        year: this.state.year,
+        month: this.state.month
+      };
+      const articles = await axios(data).get('/');
+      console.log(articles);
+    } catch (err) {
+      console.log(`Error: ${err.message}`);
+    }
   };
 
   render() {
