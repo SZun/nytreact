@@ -10,21 +10,43 @@ class Saved extends Component {
     super(props);
     this.state = {
       articles: [],
-      ctrl: false
+      ctrl: false,
+      inputVal: '',
+      comments: 'None'
     };
-    this.getSavedArticles = async () => {
-      const results = await axios.get('/');
+
+    this.onChangeHandler = e => {
       this.setState({
-        articles: [...results.data],
-        ctrl: true
+        inputVal: `${e.target.value}`
       });
-      console.log(this.state.articles);
+      console.log(this.state.inputVal);
     };
-    this.onClickHandler = async art => {
-      console.log(`clicked`);
-      console.log(art._id);
-      await axios.delete(`/${art._id}`);
-      return this.getSavedArticles();
+
+    this.getSavedArticles = async () => {
+      try {
+        const results = await axios.get('/');
+        this.setState({
+          articles: [...results.data],
+          ctrl: true
+        });
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    };
+
+    this.onRemoveHandler = async art => {
+      try {
+        await axios.delete(`/${art._id}`);
+        return this.getSavedArticles();
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
+    };
+
+    this.onCommentHandler = () => {
+      this.setState({
+        comments: this.state.inputVal
+      });
     };
 
     this.componentDidUpdate = () => {
@@ -43,7 +65,10 @@ class Saved extends Component {
               title={art.title}
               date={art.date}
               key={art._id}
-              clicked={() => this.onClickHandler(art)}
+              removed={() => this.onRemoveHandler(art)}
+              comment={e => this.onCommentHandler(e)}
+              change={e => this.onChangeHandler(e)}
+              comments={this.state.comments}
             />
           ))}
         </BCard>

@@ -17,7 +17,7 @@ class Home extends Component {
 
   getTopic = e => {
     this.setState({
-      topic: e.target.value
+      topic: `${e.target.value}`
     });
   };
 
