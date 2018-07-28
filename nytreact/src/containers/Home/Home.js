@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { NavLink } from 'react-router-dom';
-import axios from '../../axios/axios-nyt-api';
 
 import BCard from '../../components/Card/Card';
 import BLabel from '../../components/Label/Label';
@@ -34,19 +33,22 @@ class Home extends Component {
     });
   };
 
-  onClickHandler = async () => {
-    try {
-      const data = {
-        topic: this.state.topic,
-        startYear: this.state.startYear,
-        endYear: this.state.endYear
-      };
+  setData = data => {
+    localStorage.removeItem('topic');
+    localStorage.removeItem('startYear');
+    localStorage.removeItem('endYear');
+    localStorage.setItem('topic', data.topic);
+    localStorage.setItem('startYear', data.startYear);
+    localStorage.setItem('endYear', data.endYear);
+  };
 
-      const articles = await axios(data).get('/');
-      console.log(articles);
-    } catch (err) {
-      console.log(`Error: ${err.message}`);
-    }
+  onClickHandler = async () => {
+    const data = {
+      topic: this.state.topic,
+      startYear: this.state.startYear,
+      endYear: this.state.endYear
+    };
+    this.setData(data);
   };
 
   render() {
