@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 
+import { NavLink } from 'react-router-dom';
+import axios from '../../axios/axios-nyt-api';
+
 import BCard from '../../components/Card/Card';
 import BLabel from '../../components/Label/Label';
 import BInput from '../../components/Input/Input';
 import BButton from '../../components/Button/Button';
 
-import axios from '../../axios/axios-nyt-api';
-
 class Home extends Component {
   state = {
-    topic: ''
+    topic: '',
+    startYear: '',
+    endYear: '',
+    title: 'Search'
   };
 
   getTopic = e => {
@@ -18,11 +22,26 @@ class Home extends Component {
     });
   };
 
+  getStart = e => {
+    this.setState({
+      startYear: e.target.value
+    });
+  };
+
+  getEnd = e => {
+    this.setState({
+      endYear: e.target.value
+    });
+  };
+
   onClickHandler = async () => {
     try {
       const data = {
-        topic: this.state.topic
+        topic: this.state.topic,
+        startYear: this.state.startYear,
+        endYear: this.state.endYear
       };
+
       const articles = await axios(data).get('/');
       console.log(articles);
     } catch (err) {
@@ -33,20 +52,34 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <BCard header="Search">
+        <BCard header={this.state.title}>
           <BLabel>Topic</BLabel>
           <BInput
             type="text"
             placeholder="Canada"
             change={e => this.getTopic(e)}
           />
-          <BButton
-            color="primary"
-            className="text-center"
-            clicked={() => this.onClickHandler()}
-          >
-            Search
-          </BButton>
+          <BLabel>Start Year</BLabel>
+          <BInput
+            type="text"
+            placeholder="19740101"
+            change={e => this.getStart(e)}
+          />
+          <BLabel>End Year</BLabel>
+          <BInput
+            type="text"
+            placeholder="19970505"
+            change={e => this.getEnd(e)}
+          />
+          <NavLink to="/results">
+            <BButton
+              color="primary"
+              className="text-center"
+              clicked={() => this.onClickHandler()}
+            >
+              Search
+            </BButton>
+          </NavLink>
         </BCard>
       </div>
     );
