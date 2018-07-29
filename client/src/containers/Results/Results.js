@@ -33,6 +33,7 @@ const Results = props => {
           return (
             <Result
               key={article.date}
+              link={article.url}
               clicked={() =>
                 postArticle(article.title, article.date, article.url)
               }

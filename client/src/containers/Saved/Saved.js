@@ -19,7 +19,6 @@ class Saved extends Component {
       this.setState({
         inputVal: `${e.target.value}`
       });
-      console.log(this.state.inputVal);
     };
 
     this.getSavedArticles = async () => {
@@ -43,10 +42,16 @@ class Saved extends Component {
       }
     };
 
-    this.onCommentHandler = () => {
-      this.setState({
-        comments: this.state.inputVal
-      });
+    this.onCommentHandler = async art => {
+      try {
+        const data = {
+          comment: this.state.inputVal
+        };
+        await axios.put(`/${art._id}`, data);
+        return this.getSavedArticles();
+      } catch (err) {
+        console.log(`Error: ${err.message}`);
+      }
     };
 
     this.componentDidUpdate = () => {
@@ -65,10 +70,15 @@ class Saved extends Component {
               title={art.title}
               date={art.date}
               key={art._id}
+              link={art.url}
               removed={() => this.onRemoveHandler(art)}
-              comment={e => this.onCommentHandler(e)}
+              comment={e => this.onCommentHandler(art)}
               change={e => this.onChangeHandler(e)}
-              comments={this.state.comments}
+              comments={
+                art.comments[0] === undefined
+                  ? this.state.comments
+                  : art.comments.join(' ')
+              }
             />
           ))}
         </BCard>
@@ -78,8 +88,3 @@ class Saved extends Component {
 }
 
 export default Saved;
-
-// state = {
-//   articles: [],
-//   ctrl: false
-// };

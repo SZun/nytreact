@@ -3,11 +3,18 @@ import { Container, Row, Col } from 'reactstrap';
 import BButton from '../Button/Button';
 
 const Result = props => {
+  const anchor = {
+    textDecoration: 'none',
+    color: '#000000'
+  };
+
   return (
-    <Container>
+    <Container className="my-5 Result">
       <Row>
         <Col sm="6">
-          <p className="text-left">{props.children}</p>
+          <a href={props.link} target="_blank" style={anchor}>
+            <h2 className="text-left">{props.children}</h2>
+          </a>
         </Col>
         <Col sm="3" />
         <Col sm="3">
