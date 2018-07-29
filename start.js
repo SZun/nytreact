@@ -1,7 +1,11 @@
-require("babel-polyfill");
-require("babel-register")({
-  presets: ["env"],
-  plugins: ["transform-object-rest-spread", "transform-class-properties"]
+require('babel-polyfill');
+require('babel-register')({
+  presets: ['env', 'react'],
+  plugins: [
+    'transform-object-rest-spread',
+    'transform-class-properties',
+    'classnames'
+  ]
 });
 
-module.exports = require("./server.js");
+module.exports = require('./server.js');
