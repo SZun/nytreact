@@ -7,7 +7,7 @@ import './NavBar.css';
 const NavBar = () => {
   return (
     <div className="NavBar">
-      <Nav horizontal>
+      <Nav>
         <NavItem link="/home">Home</NavItem>
         <NavItem link="/saved">Saved</NavItem>
         <NavItem link="/results">Results</NavItem>

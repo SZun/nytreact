@@ -5,7 +5,7 @@ import { NavItem as NavItems, Button } from 'reactstrap';
 
 const NavItem = props => {
   return (
-    <div className="m-2">
+    <div className="mx-5 my-2">
       <NavItems>
         <Link to={props.link}>
           <Button className="px-5 text-center" color="warning">

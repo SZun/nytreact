@@ -20,7 +20,6 @@ const Results = props => {
         url: url
       };
       await axios.post('/', data);
-      props.history.push('/saved');
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }
@@ -28,11 +27,12 @@ const Results = props => {
 
   return (
     <div>
-      <BCard header="Results">
+      <BCard header="Latest Results">
         {state.banan.map(article => {
           return (
             <Result
               key={article.date}
+              link={article.url}
               clicked={() =>
                 postArticle(article.title, article.date, article.url)
               }

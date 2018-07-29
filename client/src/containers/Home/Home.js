@@ -64,7 +64,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <BCard header={this.state.title}>
+        <BCard header={this.state.title} className="Home">
           <BLabel>Topic</BLabel>
           <BInput
             type="text"
@@ -85,7 +85,7 @@ class Home extends Component {
           />
           <BButton
             color="primary"
-            className="text-center"
+            className="text-center my-3 px-5"
             clicked={() => this.onClickHandler()}
           >
             Search
