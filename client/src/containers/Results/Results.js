@@ -28,7 +28,7 @@ const Results = props => {
 
   return (
     <div>
-      <BCard header="Results">
+      <BCard header="Latest Results">
         {state.banan.map(article => {
           return (
             <Result

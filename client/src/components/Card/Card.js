@@ -2,8 +2,10 @@ import React from 'react';
 
 import { Card, CardHeader, CardBody } from 'reactstrap';
 
+import './Card.css';
+
 const BCard = props => (
-  <div>
+  <div className="Card">
     <Card>
       <CardHeader>
         <h1>{props.header}</h1>
