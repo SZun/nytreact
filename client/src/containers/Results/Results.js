@@ -20,7 +20,6 @@ const Results = props => {
         url: url
       };
       await axios.post('/', data);
-      props.history.push('/saved');
     } catch (err) {
       console.log(`Error: ${err.message}`);
     }

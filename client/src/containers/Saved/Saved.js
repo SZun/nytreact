@@ -35,6 +35,7 @@ class Saved extends Component {
 
     this.onRemoveHandler = async art => {
       try {
+        console.log('clicked');
         await axios.delete(`/${art._id}`);
         return this.getSavedArticles();
       } catch (err) {
@@ -71,7 +72,7 @@ class Saved extends Component {
               date={art.date}
               key={art._id}
               link={art.url}
-              removed={() => this.onRemoveHandler(art)}
+              remove={() => this.onRemoveHandler(art)}
               comment={e => this.onCommentHandler(art)}
               change={e => this.onChangeHandler(e)}
               comments={

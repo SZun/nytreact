@@ -85,7 +85,7 @@ class Home extends Component {
           />
           <BButton
             color="primary"
-            className="text-center my-3 px-2"
+            className="text-center my-3 px-5"
             clicked={() => this.onClickHandler()}
           >
             Search
