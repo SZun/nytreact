@@ -35,7 +35,6 @@ class Home extends Component {
 
   onClickHandler = async () => {
     try {
-      localStorage.removeItem('allArticles');
       const data = {
         topic: this.state.topic,
         startYear: this.state.startYear,
