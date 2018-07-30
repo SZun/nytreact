@@ -16,7 +16,7 @@ try {
   app.use(express.static('client/build'));
   app.get('*', function(req, res) {
     if (process.env.NODE_ENV === 'production') {
-      res.sendFile(__dirname + 'build/static/index.html');
+      res.sendFile(__dirname + '/build/static/index.html');
     } else {
       res.sendFile(__dirname + '/../client/public/index.html');
     }
