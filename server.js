@@ -10,13 +10,13 @@ const PORT = process.env.PORT || 5050;
 
 Connection(mongoose);
 BodyParser(app);
+app.use(express.static('client/build/static'));
 ArticleRoutes(app);
 
 try {
-  app.use(express.static('client/build'));
   app.get('*', function(req, res) {
     if (process.env.NODE_ENV === 'production') {
-      res.sendFile(__dirname + '/client/build/index.html');
+      res.sendFile(__dirname + 'client/build/index.html');
     } else {
       res.sendFile(__dirname + '/../client/public/index.html');
     }
